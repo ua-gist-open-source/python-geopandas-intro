@@ -1,0 +1,72 @@
+name: Check for required files
+
+on:
+  push:
+    branches: [ geopandas ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Check screencap-workspace-gdf.png
+        id: check_1_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "screencap-workspace-gdf.png"
+
+      - name: Required files exist
+        if: steps.check_1_files.outputs.files_exists != 'true'
+        run: |
+          echo Required file, 'screencap-workspace-gdf.png', is missing
+          exit 1
+          
+      - name: Check screencap-gdf-dist.png
+        id: check_2_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "screencap-gdf-dist.png"
+
+      - name: Required files exist
+        if: steps.check_2_files.outputs.files_exists != 'true'
+        run: |
+          echo Required file, 'screencap-gdf-dist.png', is missing
+          exit 1
+          
+      - name: Check screencap-gdf-centroids.png
+        id: check_3_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "screencap-gdf-centroids.png"
+
+      - name: Required files exist
+        if: steps.check_3_files.outputs.files_exists != 'true'
+        run: |
+          echo Required file, 'screencap-gdf-centroids.png', is missing
+          exit 1
+          
+      - name: Check screencap-gdf-buffered-centroid.png
+        id: check_4_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "screencap-gdf-buffered-centroid.png"
+
+      - name: Required files exist
+        if: steps.check_4_files.outputs.files_exists != 'true'
+        run: |
+          echo Required file, 'screencap-gdf-buffered-centroid.png', is missing
+          exit 1
+          
+      - name: Check assignment.ipynb
+        id: check_5_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "assignment.ipynb"
+
+      - name: Required files exist
+        if: steps.check_5_files.outputs.files_exists != 'true'
+        run: |
+          echo Required file, 'assignment.ipynb', is missing
+          exit 1
+          
